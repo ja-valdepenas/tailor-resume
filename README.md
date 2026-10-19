@@ -31,8 +31,15 @@ Open a chat in your résumé folder and send:
 If `$` commands are unavailable, ask the assistant to follow the installed
 `tailor-resume` skill by name or read its `SKILL.md` directly.
 
-On first use, the assistant helps confirm your master résumé and sets up a
-builder if needed. The starter builder uses Node.js, Pandoc, and Puppeteer;
+On first use, provide your complete **base résumé**. The assistant helps you
+review and save it as the master, normally `src/resume.md`. If you do not have
+one, it helps create and confirm one before tailoring. Every new application
+starts from a copy of that base; tailoring never changes the base itself or
+uses a previous tailored résumé as the new base. You must explicitly ask to
+update the base when your experience changes.
+
+The assistant also sets up a builder if needed. The starter builder uses
+Node.js, Pandoc, and Puppeteer;
 PDF checks also need a text extractor and page renderer, such as Poppler.
 The assistant checks dependencies and explains any installation needed.
 
@@ -45,7 +52,23 @@ After editing the draft, say:
 
 > I approve the saved draft. Build and verify the PDF, preserving my edits.
 
-Each application gets its own source and output folder. Your master stays intact.
+Each application gets a company-named folder and résumé files, for example:
+
+```text
+src/resume.md                                   # Your unchanged base
+src/applications/example-company-1234567890/
+  Your-Name-Example-Company-Resume.md             # Tailored editable copy
+  application-notes.md
+dist/applications/example-company-1234567890/
+  Your-Name-Example-Company-Resume.html
+  Your-Name-Example-Company-Resume.pdf
+```
+
+The posting ID distinguishes different jobs at the same company. Ask the
+assistant to move, rename, or archive an application when needed; it preserves
+that application's files and history, updates their references, and leaves
+the base and other applications alone.
+
 New chats continue from saved files and notes. The skill does not submit applications.
 Text and visual checks improve readability; they do not guarantee an ATS result.
 

@@ -11,12 +11,21 @@ the project's instructions and existing edits. Do not assume access to past chat
 
 ## Establish the source and builder
 
-Find the existing master résumé, application notes, and rendering workflow.
+On first use, ask for the person's complete base résumé if it is not already
+available. Find the existing master résumé, application notes, and rendering workflow.
 Use those when available; do not overwrite them with the bundled starter.
 If the user has no master, help create and review one from their supplied résumé,
 profile, and explicit confirmations. Ask about missing facts and contact details
 instead of inventing them. Save the complete confirmed master, preferably at
 `src/resume.md`, and retain its full content. Tailoring never authorizes editing it.
+Confirm and record the actual base path so later chats use the same source.
+Before starting any new application, read that base again and copy it; never
+use a previous application's tailored résumé as the starting point. Continue
+an existing application's draft from its saved files instead of replacing it.
+Record a checksum of the base before tailoring and check it again before
+delivery. It must remain unchanged unless the user separately and explicitly
+requested an update to the base; do not promote application wording or new
+facts into the base automatically.
 
 When no builder exists, read [references/pdf-workflow.md](references/pdf-workflow.md)
 and set up the bundled Markdown-to-HTML-to-PDF assets in the user's project.
@@ -39,10 +48,17 @@ and exact local commands, and state which checks remain pending.
 3. Identify responsibilities, mandatory and preferred qualifications, language,
    and location requirements. Flag unverified eligibility rather than inventing
    work authorization, residence, relocation, or availability.
-4. Create `src/applications/<company-job-id>/resume.md` from the confirmed master,
-   or continue that application's existing source without replacing manual edits.
+4. Create `src/applications/<company-job-id>/<Candidate>-<Company>-Resume.md`
+   by copying the confirmed base, or continue that application's existing source
+   without replacing manual edits.
    Adapt to an established project layout when appropriate. Preserve other
    applications, earlier versions, shared styles, and reusable templates.
+   Include the actual company name in both the folder and résumé filename,
+   using filesystem-safe names. Use a lowercase company slug plus posting ID
+   for the folder so jobs at one company stay distinct. If no ID is available,
+   use the company, role, and a date or other unique suffix. Do not overwrite
+   another application on a naming collision. Retain existing draft names and
+   locations unless the user requests migration; find them through notes.
 5. Prioritize documented accomplishments and relevant skills. Preserve actual
    historical job titles, employers, dates, and attribution. A supported target
    headline does not authorize rewriting past titles. Do not invent metrics,
@@ -59,10 +75,12 @@ and exact local commands, and state which checks remain pending.
    within the existing work entries. Keep unverified requirements in notes.
 7. Save `application-notes.md` beside the draft with the URL/ID, description
    source/date, targeting choices, confirmed additions, gaps, language, section
-   preference/heading, and source/output paths. Save application-specific CSS
-   there when needed. Do not change tracker status simply for preparing a résumé.
-8. Generate an HTML-only preview with the established builder. Open or link the
-   actual editable Markdown and summarize material changes and open questions.
+   preference/heading, base path and checksum, and application source/output
+   paths. Save application-specific CSS there when needed. Do not change tracker
+   status simply for preparing a résumé.
+8. Generate a company-named HTML-only preview with the established builder.
+   Open or link the actual editable Markdown and summarize material changes
+   and open questions.
    Wait for draft approval before PDF generation unless the user has explicitly
    authorized skipping review. Do not ask again when approval is already present.
 
@@ -70,8 +88,11 @@ and exact local commands, and state which checks remain pending.
 
 Re-read the saved Markdown and CSS after approval so the user's edits prevail.
 Build only the application's outputs under `dist/applications/<company-job-id>/`
-using a descriptive candidate/company PDF name. Use the existing pipeline, or
-the setup in [references/pdf-workflow.md](references/pdf-workflow.md) when new.
+with matching `<Candidate>-<Company>-Resume.html` and `.pdf` filenames. Pass
+the exact source, output directory, HTML name, and PDF name to the builder;
+never rely on defaults that build the base into the shared `dist/` directory.
+Use the existing pipeline, or the setup in
+[references/pdf-workflow.md](references/pdf-workflow.md) when new.
 Fix source or CSS and rebuild rather than manually editing generated files.
 
 Extract PDF text and compare name, contact details, headings, employers, roles,
@@ -84,6 +105,18 @@ run, identify the limitation instead of calling the PDF ready to send.
 Deliver the verified PDF and editable Markdown with clickable links. Keep
 requirements unsupported by the candidate's facts in the notes, not the résumé.
 Do not promise a universal ATS score or submit an application.
+
+## Move, rename, or archive an application
+
+When requested, move or rename only the selected application's source folder,
+deliverable folder, and their contents, preserving its notes and previous
+versions. Keep company-identifiable names and the posting identity. Check the
+destination first; do not overwrite another application. Update saved paths,
+tracker links when present, and local preview references; rebuild from the
+application source if moving invalidates generated links. Archive to a clearly
+named application folder when requested instead of deleting history. Never
+move, rename, overwrite, or replace the base as part of organizing applications.
+Verify its checksum and give the user the final source and deliverable paths.
 
 ## Continue in another chat
 
