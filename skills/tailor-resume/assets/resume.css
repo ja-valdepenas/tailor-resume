@@ -1,0 +1,20 @@
+@page {
+  size: A4;
+  margin: 15mm;
+}
+
+* { box-sizing: border-box; }
+html { font-family: Arial, Helvetica, sans-serif; color: #171717; font-size: 11pt; line-height: 1.4; }
+body { max-width: 180mm; margin: 0 auto; }
+h1 { margin: 0 0 0.4em; font-size: 22pt; }
+h2 { margin: 1.1em 0 0.45em; font-size: 13pt; border-bottom: 1px solid #aaa; padding-bottom: 0.2em; }
+h3 { margin: 0.8em 0 0.25em; font-size: 11pt; }
+h1, h2, h3 { break-after: avoid; }
+p { margin: 0.35em 0 0.65em; }
+ul { margin: 0.25em 0 0.75em; padding-left: 1.2em; }
+li { margin-bottom: 0.3em; }
+a { color: inherit; text-decoration: underline; overflow-wrap: anywhere; }
+p, li { orphans: 2; widows: 2; }
+@media screen {
+  body { padding: 24px; }
+}
